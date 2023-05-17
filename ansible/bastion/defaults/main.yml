@@ -8,7 +8,8 @@ machine_version: latest
 
 java:
   state: present
-  package: java-11-amazon-corretto.x86_64
+  package: openjdk-11-jdk
+
 
 ssh:
   service_name: sshd
