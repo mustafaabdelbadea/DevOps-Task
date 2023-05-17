@@ -1,0 +1,17 @@
+---
+# defaults file for bastion
+
+
+
+machine_version: latest
+
+
+java:
+  state: present
+  package: java-11-amazon-corretto.x86_64
+
+ssh:
+  service_name: sshd
+  state: present
+  package: openssh-server
+  status: started

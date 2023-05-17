@@ -1,0 +1,6 @@
+---
+# handlers file for bastion
+- name: start_ssh
+  systemd:
+    name: "{{ ssh.sshd }}"
+    state: "{{ ssh.status }}"

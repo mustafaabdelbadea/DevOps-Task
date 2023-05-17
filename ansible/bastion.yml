@@ -1,0 +1,8 @@
+- name: use bastion role playbook
+  hosts: server
+  gather_facts: no
+
+  vars:
+    system_owner: mustafa
+  roles:
+    - role: bastion

@@ -1,0 +1,25 @@
+---
+# tasks file for bastion
+
+- name: Update machine
+  dnf:
+    name: "*"
+    state: "{{ machine_version }}"
+
+- name: Creates jenkins directory
+  file:
+    path: /jenkins
+    state: directory
+    mode: '777'
+
+- name: Install jdk
+  dnf:
+    name: "{{ java.package }}"
+    state: "{{ java.state }}"
+
+- name: Install ssh
+  dnf:
+    name: "{{ ssh.package }}"
+    state: "{{ ssh.state }}"
+  notify: 
+    - start_ssh
