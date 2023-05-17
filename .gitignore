@@ -1,1 +1,4 @@
 ansible/*.pem
+terraform/.terraform*
+*.pem
+terraform/public_ips.txt
