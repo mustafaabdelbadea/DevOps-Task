@@ -2,7 +2,7 @@
 # tasks file for bastion
 
 - name: Update machine
-  dnf:
+  apt:
     name: "*"
     state: "{{ machine_version }}"
 
@@ -13,12 +13,12 @@
     mode: '777'
 
 - name: Install jdk
-  dnf:
+  apt:
     name: "{{ java.package }}"
     state: "{{ java.state }}"
 
 - name: Install ssh
-  dnf:
+  apt:
     name: "{{ ssh.package }}"
     state: "{{ ssh.state }}"
   notify: 
