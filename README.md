@@ -16,6 +16,7 @@ Create ansible script to configure application ec2(private)
 
 1-run terraform code from jenkins: 
     - when build now --> terraform apply 
+    
 
 2- Create ansible script to configure private ec2 to be jenkins slave 
 
@@ -23,4 +24,4 @@ Create ansible script to configure application ec2(private)
 
 4- Create new pipeline to deploy nodejs application from (rds_redis)
 
-5- Create application load balancer and point to the private ec2 instance 
+5- Create application load balancer and point to the private ec2 instance |-- 
