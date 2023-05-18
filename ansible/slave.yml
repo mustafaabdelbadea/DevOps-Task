@@ -1,8 +1,8 @@
-- name: use bastion role playbook
+- name: use slave role playbook
   hosts: server
   gather_facts: no
 
   vars:
     system_owner: mustafa
   roles:
-    - role: bastion
+    - role: slave

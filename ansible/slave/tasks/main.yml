@@ -1,10 +1,12 @@
 ---
 # tasks file for bastion
 
+# Use force update get to overcome the apt lock (lock held by another process)
+
 - name: Update machine
   apt:
-    name: "*"
-    state: "{{ machine_version }}"
+    update_cache: yes
+    force_apt_get: "{{ machine.force }}"
 
 - name: Creates jenkins directory
   file:
@@ -12,14 +14,15 @@
     state: directory
     mode: '777'
 
-- name: Install jdk
+- name: Install jre
   apt:
     name: "{{ java.package }}"
-    state: "{{ java.state }}"
+    force_apt_get: yes
 
 - name: Install ssh
   apt:
     name: "{{ ssh.package }}"
     state: "{{ ssh.state }}"
+    force_apt_get: yes
   notify: 
     - start_ssh

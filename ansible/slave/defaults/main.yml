@@ -3,12 +3,14 @@
 
 
 
-machine_version: latest
+machine:
+  version: latest
+  force: yes
 
 
 java:
   state: present
-  package: openjdk-11-jdk
+  package: openjdk-11-jre
 
 
 ssh:
