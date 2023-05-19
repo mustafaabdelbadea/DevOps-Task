@@ -53,3 +53,23 @@ resource "aws_instance" "privateInstance2" {
    echo "<html><body><div>Pub $(hostname -f)</div></body></html>" > /usr/share/nginx/html/index.html
    EOF
 }
+resource "aws_instance" "privateInstance3" {
+  ami                         = var.AMI_ID
+  instance_type               = var.INSTANCE_TYPE
+  associate_public_ip_address = false
+  vpc_security_group_ids      = [aws_security_group.allow_ssh_custom.id]
+  subnet_id                   = module.network.prv_subnet2
+  key_name                    = var.KEY_NAME
+
+  tags = {
+    Name = var.SLAVE_TAG
+  }
+  user_data = <<-EOF
+   #!/bin/bash
+   sudo apt update -y
+   sudo apt install nginx -y
+   sudo systemctl enable nginx
+   sudo systemctl start nginx
+   echo "<html><body><div>Pub $(hostname -f)</div></body></html>" > /usr/share/nginx/html/index.html
+   EOF
+}

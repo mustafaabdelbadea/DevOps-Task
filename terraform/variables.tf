@@ -15,6 +15,10 @@ variable "TAG" {
   type = string
 }
 
+variable "SLAVE_TAG" {
+  type = string
+}
+
 variable "VPC_CIDR" {
   type = string
 }
