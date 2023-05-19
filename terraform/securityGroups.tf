@@ -9,6 +9,12 @@ resource "aws_security_group" "allow_ssh" {
     protocol    = "tcp"
     cidr_blocks = [var.DEFAULT_CIDR]
   }
+  ingress {
+    from_port   = 3000
+    to_port     = 3000
+    protocol    = "tcp"
+    cidr_blocks = [var.DEFAULT_CIDR]
+  }
 
 
   egress {
