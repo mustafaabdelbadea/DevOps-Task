@@ -1,0 +1,8 @@
+- name: use backend role playbook
+  hosts: backend
+  gather_facts: no
+
+  vars:
+    system_owner: mustafa
+  roles:
+    - role: backend

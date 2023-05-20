@@ -1,0 +1,30 @@
+---
+# defaults file for Backend
+
+
+
+machine:
+  distribution: ubuntu
+  architecture: x86_64
+  distribution_release: focal
+  version: latest
+  force: yes
+  state: present
+
+
+required_packages:
+  state: present
+  packages:
+    - apt-transport-https
+    - ca-certificates
+    - lsb-release
+    - gnupg
+    - curl
+
+docker:
+  packages:
+    - docker
+    - docker.io
+    - docker-compose
+    - docker-registry
+  

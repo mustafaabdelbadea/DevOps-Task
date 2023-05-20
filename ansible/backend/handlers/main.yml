@@ -1,0 +1,6 @@
+---
+# handlers file for bastion
+- name: docker
+  systemd:
+    name: docker
+    state: started

@@ -1,0 +1,44 @@
+---
+# tasks file for bastion
+
+# Use force update get to overcome the apt lock (lock held by another process)
+
+- name: Update machine
+  apt:
+    update_cache: yes
+    force_apt_get: "{{ machine.force }}"
+
+- name: Install required docker packages
+  apt:
+    name: "{{ item }}"
+    state: "{{ machine.state }}"
+  loop: "{{ required_packages.packages }}"
+
+
+- name: Add signing key
+  apt_key:
+    url: "https://download.docker.com/linux/{{ machine.distribution | lower }}/gpg"
+    state: "{{ machine.state }}"
+
+- name: Add repository into sources list
+  apt_repository:
+    repo: "deb [arch={{ machine.architecture }}] https://download.docker.com/linux/{{ machine.distribution | lower }} {{ machine.distribution_release }} stable"
+    state: "{{ machine.state }}"
+    filename: docker
+  
+- name: Install Docker
+  apt:
+    name: "{{ item }}"
+    state: "{{ machine.state }}"
+  loop: "{{ docker.packages }}"
+  notify: docker
+
+# - name: Create default containers
+#   community.docker.docker_container:
+#     name: "Backend"
+#     image: "nginx"
+#     ports:
+#       - "80:80"
+#     state: started
+
+
