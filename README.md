@@ -11,6 +11,9 @@ Create ansible script to configure application ec2(private)
 11- add application load balancer to your terraform code to expose your nodejs app on port 80 on the load balancer
 12- test your application by calling loadbalancer_url/db and /redis
 13- create documentation illustrating your steps with screenshots
+
+Deploy jenkins on eks with dynamic jobs
+https://aws.amazon.com/blogs/devops/orchestrate-jenkins-workloads-using-dynamic-pod-autoscaling-with-amazon-eks/
 -----------------------------------------
 
 
@@ -25,3 +28,14 @@ Create ansible script to configure application ec2(private)
 4- Create new pipeline to deploy nodejs application from (rds_redis)
 
 5- Create application load balancer and point to the private ec2 instance |-- 
+
+
+
+
+
+-----------------------------
+
+install aws plugin 
+install terraform plugin
+install docker pipeline plugin
+install slack plugin

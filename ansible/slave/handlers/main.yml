@@ -4,3 +4,8 @@
   systemd:
     name: "{{ ssh.sshd }}"
     state: "{{ ssh.status }}"
+
+- name: docker
+  systemd:
+    name: docker
+    state: started

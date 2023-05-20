@@ -33,6 +33,23 @@
   loop: "{{ docker.packages }}"
   notify: docker
 
+# sudo groupadd docker
+- name: Create "docker" group
+  group:
+   name: "docker"
+   state: present
+
+# sudo usermod -aG docker root
+- name: Add remote "ubuntu" user to "docker" group
+  user:
+    name: "ubuntu"
+    group: "docker"
+    append: yes
+
+- name: Change permission
+  file:
+    path: "/var/run/docker.sock"
+    mode: '666'
 # - name: Create default containers
 #   community.docker.docker_container:
 #     name: "Backend"

@@ -26,3 +26,52 @@
     force_apt_get: yes
   notify: 
     - start_ssh
+
+
+- name: Update machine
+  apt:
+    update_cache: yes
+    force_apt_get: "{{ machine.force }}"
+
+- name: Install required docker packages
+  apt:
+    name: "{{ item }}"
+    state: "{{ machine.state }}"
+  loop: "{{ required_packages.packages }}"
+
+
+- name: Add signing key
+  apt_key:
+    url: "https://download.docker.com/linux/{{ machine.distribution | lower }}/gpg"
+    state: "{{ machine.state }}"
+
+- name: Add repository into sources list
+  apt_repository:
+    repo: "deb [arch={{ machine.architecture }}] https://download.docker.com/linux/{{ machine.distribution | lower }} {{ machine.distribution_release }} stable"
+    state: "{{ machine.state }}"
+    filename: docker
+  
+- name: Install Docker
+  apt:
+    name: "{{ item }}"
+    state: "{{ machine.state }}"
+  loop: "{{ docker.packages }}"
+  notify: docker
+
+# sudo groupadd docker
+- name: Create "docker" group
+  group:
+   name: "docker"
+   state: present
+
+# sudo usermod -aG docker root
+- name: Add remote "ubuntu" user to "docker" group
+  user:
+    name: "ubuntu"
+    group: "docker"
+    append: yes
+
+- name: Change permission
+  file:
+    path: "/var/run/docker.sock"
+    mode: '666'
