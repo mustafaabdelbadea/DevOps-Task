@@ -39,3 +39,9 @@ install aws plugin
 install terraform plugin
 install docker pipeline plugin
 install slack plugin
+
+
+
+in jenkins
+
+ssh -i /var/jenkins_home/key.pem  ubuntu@172.0.4.16 -o StrictHostKeyChecking=accept-new  -o ProxyCommand="ssh -i /var/jenkins_home/key.pem -p 22 -W %h:%p -q ubuntu@44.200.131.150 -o StrictHostKeyChecking=accept-new"  exec java -jar ~/bin/agent.jar

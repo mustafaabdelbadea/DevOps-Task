@@ -14,10 +14,23 @@
     state: directory
     mode: '777'
 
+- name: Creates bin directory
+  file:
+    path: ~/bin
+    state: directory
+    mode: '777'
+
 - name: Install jre
   apt:
     name: "{{ java.package }}"
     force_apt_get: yes
+
+- name: Copy file with owner and permissions
+  ansible.builtin.copy:
+    src: ../../agent.jar
+    dest: ~/bin/agent.jar
+    mode: '0777'
+
 
 - name: Install ssh
   apt:
