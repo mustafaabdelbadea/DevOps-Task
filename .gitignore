@@ -3,3 +3,4 @@ terraform/.terraform*
 *.pem
 terraform/public_ips.txt
 ansible/*.jar
+ansible/.env

@@ -22,7 +22,7 @@
 
 - name: Add repository into sources list
   apt_repository:
-    repo: "deb [arch={{ machine.architecture }}] https://download.docker.com/linux/{{ machine.distribution | lower }} {{ machine.distribution_release }} stable"
+    repo: "deb [arch:{{ machine.architecture }}] https://download.docker.com/linux/{{ machine.distribution | lower }} {{ machine.distribution_release }} stable"
     state: "{{ machine.state }}"
     filename: docker
   
@@ -50,12 +50,38 @@
   file:
     path: "/var/run/docker.sock"
     mode: '666'
-# - name: Create default containers
-#   community.docker.docker_container:
-#     name: "Backend"
-#     image: "nginx"
-#     ports:
-#       - "80:80"
-#     state: started
+
+- name: Creates Nodejs directory
+  file:
+    path: /home/ubuntu/nodejs
+    state: directory
+    mode: '777'
+
+- name: Copy env
+  ansible.builtin.copy:
+    src: ../../.env
+    dest: /home/ubuntu/nodejs/.env
+    mode: '0777'
+  tags:
+    - docker_run
+
+- name: change dir
+  ansible.builtin.shell: "cd /home/ubuntu/nodejs"
+  tags:
+    - docker_run
+
+
+- name: Create default containers
+  community.docker.docker_container:
+    name: "Backend"
+    image: "mustafaabdelbadea/nodejs_rds_redis:6"
+    env_file: /home/ubuntu/nodejs/.env
+    ports:
+      - "80:3000"
+    state: started
+  tags:
+    - docker_run
+
+
 
 

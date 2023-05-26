@@ -1,5 +1,5 @@
 - name: use slave role playbook
-  hosts: server
+  hosts: slave
   gather_facts: no
 
   vars:

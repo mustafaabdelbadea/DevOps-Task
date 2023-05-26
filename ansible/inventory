@@ -1,7 +1,7 @@
-[server]
-172.0.4.16
+[slave]
+172.0.4.35
 
-[server:vars]
+[slave:vars]
 ansible_user=ubuntu
 ansible_port=22
 ansible_ssh_common_args='-o StrictHostKeyChecking=accept-new'
@@ -10,35 +10,36 @@ ansible_become_method=sudo
 ansible_ssh_private_key_file=../Prod-key.pem
 ansible_python_interpreter=/usr/bin/python3
 ansible_ask_sudo_pass=false
-ansible_ssh_common_args='-o ProxyCommand="ssh -i ../Prod-key.pem -p 22 -W %h:%p -q ubuntu@44.200.131.150 -o StrictHostKeyChecking=accept-new"'
+ansible_ssh_common_args='-o ProxyCommand="ssh -i ../Prod-key.pem -p 22 -W %h:%p -q ubuntu@3.228.10.177 -o StrictHostKeyChecking=accept-new"'
 
 
-[local]
-44.202.219.253
+; [local]
+; 44.202.219.253
 
-[local:vars]
-ansible_user=ubuntu
-ansible_port=22
-ansible_ssh_private_key_file=./ed-key.pem
-ansible_python_interpreter=/usr/bin/python3
+; [local:vars]
+; ansible_user=ubuntu
+; ansible_port=22
+; ansible_ssh_private_key_file=./ed-key.pem
+; ansible_python_interpreter=/usr/bin/python3
 
 [backend]
-54.211.14.121
+172.0.4.124
+172.0.3.176
 [backend:vars]
-
-ansible_user=ubuntu
-ansible_port=22
-ansible_ssh_private_key_file=../ed-key.pem
-ansible_python_interpreter=/usr/bin/python3
-ansible_become=yes
-ansible_become_method=sudo 
 
 ; ansible_user=ubuntu
 ; ansible_port=22
-; ansible_ssh_common_args='-o StrictHostKeyChecking=accept-new'
+; ansible_ssh_private_key_file=../ed-key.pem
+; ansible_python_interpreter=/usr/bin/python3
 ; ansible_become=yes
 ; ansible_become_method=sudo 
-; ansible_ssh_private_key_file=./ed-key.pem
-; ansible_python_interpreter=/usr/bin/python3
-; ansible_ask_sudo_pass=false
-; ansible_ssh_common_args='-o ProxyCommand="ssh -i ./ed-key.pem -p 22 -W %h:%p -q ubuntu@44.193.12.98 -o StrictHostKeyChecking=accept-new"'
+
+ansible_user=ubuntu
+ansible_port=22
+ansible_ssh_common_args='-o StrictHostKeyChecking=accept-new'
+ansible_become=yes
+ansible_become_method=sudo 
+ansible_ssh_private_key_file=../Prod-key.pem
+ansible_python_interpreter=/usr/bin/python3
+ansible_ask_sudo_pass=false
+ansible_ssh_common_args='-o ProxyCommand="ssh -i ../Prod-key.pem -p 22 -W %h:%p -q ubuntu@3.228.10.177 -o StrictHostKeyChecking=accept-new"'

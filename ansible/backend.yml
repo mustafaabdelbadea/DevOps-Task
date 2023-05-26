@@ -1,5 +1,5 @@
 - name: use backend role playbook
-  hosts: server
+  hosts: backend
   gather_facts: no
 
   vars:

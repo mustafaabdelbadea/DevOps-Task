@@ -16,7 +16,7 @@
 
 - name: Creates bin directory
   file:
-    path: ~/bin
+    path: /home/ubuntu/bin
     state: directory
     mode: '777'
 
@@ -28,7 +28,7 @@
 - name: Copy file with owner and permissions
   ansible.builtin.copy:
     src: ../../agent.jar
-    dest: ~/bin/agent.jar
+    dest: /home/ubuntu/bin/agent.jar
     mode: '0777'
 
 
