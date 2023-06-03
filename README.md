@@ -1,19 +1,19 @@
 # DevOps-Task
 
 
-*- Create infrastructure pipeline to run terraform with jenkins
-task
-Create ansible script to configure application ec2(private)
-8- configure ansible to run over private ips through bastion (~/.ssh/config)
-9- write ansible script to configure ec2 to run  as jenkins slaves
-9- configure slave in jenkins dashboard (with private ip)
-10- create pipeline to deploy nodejs_example from branch (rds_redis)
-11- add application load balancer to your terraform code to expose your nodejs app on port 80 on the load balancer
-12- test your application by calling loadbalancer_url/db and /redis
-13- create documentation illustrating your steps with screenshots
+## Create infrastructure pipeline to run terraform with jenkins
 
-Deploy jenkins on eks with dynamic jobs
-https://aws.amazon.com/blogs/devops/orchestrate-jenkins-workloads-using-dynamic-pod-autoscaling-with-amazon-eks/
+- Create ansible script to configure application ec2(private)
+- Configure ansible to run over private ips through bastion (~/.ssh/config)
+- Write ansible script to configure ec2 to run  as jenkins slaves
+- Configure slave in jenkins dashboard (with private ip)
+- Create pipeline to deploy nodejs_example from branch (rds_redis)
+- Add application load balancer to your terraform code to expose your nodejs app on port 80 on the load balancer
+- Test your application by calling loadbalancer_url/db and /redis
+- Create documentation illustrating your steps with screenshots
+
+<!-- Deploy jenkins on eks with dynamic jobs
+https://aws.amazon.com/blogs/devops/orchestrate-jenkins-workloads-using-dynamic-pod-autoscaling-with-amazon-eks/ -->
 -----------------------------------------
 
 
@@ -35,7 +35,7 @@ https://aws.amazon.com/blogs/devops/orchestrate-jenkins-workloads-using-dynamic-
 
 -----------------------------
 
-install aws plugin 
+<!-- install aws plugin 
 install terraform plugin
 install docker pipeline plugin
 install slack plugin
@@ -44,4 +44,4 @@ install slack plugin
 
 in jenkins
 
-ssh -i /var/jenkins_home/key.pem  ubuntu@172.0.4.16 -o StrictHostKeyChecking=accept-new  -o ProxyCommand="ssh -i /var/jenkins_home/key.pem -p 22 -W %h:%p -q ubuntu@44.200.131.150 -o StrictHostKeyChecking=accept-new"  exec java -jar ~/bin/agent.jar
+ssh -i /var/jenkins_home/key.pem  ubuntu@172.0.4.16 -o StrictHostKeyChecking=accept-new  -o ProxyCommand="ssh -i /var/jenkins_home/key.pem -p 22 -W %h:%p -q ubuntu@44.200.131.150 -o StrictHostKeyChecking=accept-new"  exec java -jar ~/bin/agent.jar -->
